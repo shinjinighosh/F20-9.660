@@ -53,7 +53,7 @@ for coin in coins:
     h, t = coin
     fair = fair_coin(h, t)
     unfair = unfair_coin(h, t)
-    lpo = fair / unfair
+    lpo = math.log(fair / unfair)
     model.append(logistic(lpo, 1, 0.2))
 
 print(model)
