@@ -56,4 +56,7 @@ for coin in coins:
     lpo = math.log(fair / unfair)
     model.append(logistic(lpo, 1, 0.2))
 
+human_avg_fair = [(sequence_1[i] + sequence_3[i]) / 2 for i in range(len(sequence_1))]
+human_avg_unfair = [(sequence_2[i] + sequence_4[i]) / 2 for i in range(len(sequence_1))]
+
 print(model)
