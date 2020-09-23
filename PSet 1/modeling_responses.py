@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import matplotlib.pyplot as plt
 
 
 def logistic(x, a, b):
@@ -27,6 +28,16 @@ def unfair_coin(h, t):
 def log_posterior_odds(d_h1, d_h2):
     ''' return log posterior odds ration given P(D|H1) and P(D|H2)'''
     return log(d_h1 / d_h2)
+
+
+def scale(array, a, b):
+    _min = min(array)
+    _max = max(array)
+    scaling_factor = (b - a) / (_max - _min)
+    res = []
+    for i in array:
+        res.append((i - _min) * scaling_factor + a)
+    return res
 
 
 sequence_1 = [6, 5, 2, 6, 5, 1, 7, 5, 1]
@@ -58,5 +69,14 @@ for coin in coins:
 
 human_avg_fair = [(sequence_1[i] + sequence_3[i]) / 2 for i in range(len(sequence_1))]
 human_avg_unfair = [(sequence_2[i] + sequence_4[i]) / 2 for i in range(len(sequence_1))]
+scaled_model = scale(model, 1, 7)
+# print(model)
 
-print(model)
+plt.plot(range(1, 10), scaled_model, marker='o', markerfacecolor='blue', markersize=6,
+         color='skyblue', linewidth=4, label="model")
+plt.plot(range(1, 10), human_avg_fair, marker='', color='olive',
+         linewidth=2, linestyle="dashed", label="human fair")
+plt.plot(range(1, 10), human_avg_unfair, marker='', color='red',
+         linewidth=2, linestyle='dashed', label="human unfair")
+plt.legend()
+plt.show()
