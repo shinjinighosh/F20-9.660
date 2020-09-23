@@ -82,7 +82,7 @@ plt.plot(range(1, 10), sequence_3, marker='', color='red',
 plt.title("Model vs Humans on the 'Fair' prior")
 plt.legend()
 plt.savefig("model_vs_fair.png")
-plt.show()
+# plt.show()
 
 plt.figure(2)
 plt.plot(range(1, 10), scaled_model, marker='o', markerfacecolor='blue', markersize=6,
@@ -94,4 +94,10 @@ plt.plot(range(1, 10), sequence_4, marker='', color='red',
 plt.title("Model vs Humans on the 'Unfair' prior")
 plt.legend()
 plt.savefig("model_vs_unfair.png")
-plt.show()
+# plt.show()
+
+print("The correlation between")
+print("Fair Prior: Model and Human A\n", np.corrcoef(scaled_model, sequence_1))
+print("Fair Prior: Model and Human B\n", np.corrcoef(scaled_model, sequence_3))
+print("Unfair Prior: Model and Human A\n", np.corrcoef(scaled_model, sequence_2))
+print("Unfair Prior: Model and Human B\n", np.corrcoef(scaled_model, sequence_4))
