@@ -72,11 +72,26 @@ human_avg_unfair = [(sequence_2[i] + sequence_4[i]) / 2 for i in range(len(seque
 scaled_model = scale(model, 1, 7)
 # print(model)
 
+plt.figure(1)
 plt.plot(range(1, 10), scaled_model, marker='o', markerfacecolor='blue', markersize=6,
-         color='skyblue', linewidth=4, label="model")
-plt.plot(range(1, 10), human_avg_fair, marker='', color='olive',
-         linewidth=2, linestyle="dashed", label="human fair")
-plt.plot(range(1, 10), human_avg_unfair, marker='', color='red',
-         linewidth=2, linestyle='dashed', label="human unfair")
+         color='skyblue', linewidth=4, label="Model")
+plt.plot(range(1, 10), sequence_1, marker='', color='olive',
+         linewidth=2, linestyle="dashed", label="Human A")
+plt.plot(range(1, 10), sequence_3, marker='', color='red',
+         linewidth=2, linestyle='dashed', label="Human B")
+plt.title("Model vs Humans on the 'Fair' prior")
 plt.legend()
+plt.savefig("model_vs_fair.png")
+plt.show()
+
+plt.figure(2)
+plt.plot(range(1, 10), scaled_model, marker='o', markerfacecolor='blue', markersize=6,
+         color='skyblue', linewidth=4, label="Model")
+plt.plot(range(1, 10), sequence_2, marker='', color='olive',
+         linewidth=2, linestyle="dashed", label="Human A")
+plt.plot(range(1, 10), sequence_4, marker='', color='red',
+         linewidth=2, linestyle='dashed', label="Human B")
+plt.title("Model vs Humans on the 'Unfair' prior")
+plt.legend()
+plt.savefig("model_vs_unfair.png")
 plt.show()
